@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :medicines
   resources :checklists
   resources :rewards
   resources :children
