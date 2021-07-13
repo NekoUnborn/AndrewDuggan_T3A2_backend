@@ -3,7 +3,7 @@ class ChecklistsController < ApplicationController
   before_action :set_checklist, only: %i[show create update destroy]
 
   def index
-    render json: Checklist.all
+    render json: Checklist.where(child_id: params[child_id]).order(time: :asc)
   end
 
   def show
@@ -36,7 +36,7 @@ class ChecklistsController < ApplicationController
     @checklist = Checklist.find(params[:id])
   end
 
-  def checklists_params
-    params.permit(:param1, :param2)
+  def checklist_params
+    params.permit(:child_id, :time, :medication_id, :complete, :last_accessed)
   end
 end

@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  child: one
+  time: 2021-07-14 09:58:49
+  medicine: one
+  complete: false
+  last_accessed: 2021-07-14
+
+two:
+  child: two
+  time: 2021-07-14 09:58:49
+  medicine: two
+  complete: false
+  last_accessed: 2021-07-14

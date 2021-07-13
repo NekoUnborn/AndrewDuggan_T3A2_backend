@@ -36,7 +36,7 @@ class RewardsController < ApplicationController
     @reward = Reward.find(params[:id])
   end
 
-  def rewards_params
+  def reward_params
     params.permit(:param1, :param2)
   end
 end

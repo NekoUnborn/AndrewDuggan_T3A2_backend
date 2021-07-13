@@ -70,7 +70,7 @@ echo "  def set_$1" >> ./app/controllers/$2_controller.rb
 echo "    @$1 = ${1^}.find(params[:id])" >> ./app/controllers/$2_controller.rb
 echo "  end" >> ./app/controllers/$2_controller.rb
 echo "" >> ./app/controllers/$2_controller.rb
-echo "  def $2_params" >> ./app/controllers/$2_controller.rb
+echo "  def $1_params" >> ./app/controllers/$2_controller.rb
 echo "    params.permit(:param1, :param2)" >> ./app/controllers/$2_controller.rb
 echo "  end" >> ./app/controllers/$2_controller.rb
 echo "end" >> ./app/controllers/$2_controller.rb

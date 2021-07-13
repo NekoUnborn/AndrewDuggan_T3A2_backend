@@ -36,7 +36,7 @@ class MedicinesController < ApplicationController
     @medicine = Medicine.find(params[:id])
   end
 
-  def medicines_params
+  def medicine_params
     params.permit(:param1, :param2)
   end
 end

@@ -1,8 +1,9 @@
-  #  before_action :authenticate
+class ChildrenController < ApplicationController
+#  before_action :authenticate
   before_action :set_child, only: %i[show create update destroy]
 
   def index
-    render json: Child.all
+    render json: Child.where(user_id: params)
   end
 
   def show
@@ -35,7 +36,7 @@
     @child = Child.find(params[:id])
   end
 
-  def childs_params
+  def child_params
     params.permit(:param1, :param2)
   end
 end
