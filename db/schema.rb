@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_13_044745) do
+ActiveRecord::Schema.define(version: 2021_07_13_235849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "checklist_entries", force: :cascade do |t|
+    t.bigint "child_id", null: false
+    t.time "time"
+    t.bigint "medicine_id", null: false
+    t.boolean "complete"
+    t.date "last_accessed"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["child_id"], name: "index_checklist_entries_on_child_id"
+    t.index ["medicine_id"], name: "index_checklist_entries_on_medicine_id"
+  end
 
   create_table "checklists", force: :cascade do |t|
     t.bigint "child_id", null: false
@@ -59,4 +71,6 @@ ActiveRecord::Schema.define(version: 2021_07_13_044745) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "checklist_entries", "children"
+  add_foreign_key "checklist_entries", "medicines"
 end

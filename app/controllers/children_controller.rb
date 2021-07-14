@@ -3,7 +3,7 @@ class ChildrenController < ApplicationController
   before_action :set_child, only: %i[show create update destroy]
 
   def index
-    render json: Child.where(user_id: params)
+    render json: Child.all
   end
 
   def show
@@ -30,6 +30,10 @@ class ChildrenController < ApplicationController
     end
   end
 
+  def users_children
+    render json: Child.where(user_id: params[:user_id])
+  end
+
   private
 
   def set_child
@@ -37,6 +41,6 @@ class ChildrenController < ApplicationController
   end
 
   def child_params
-    params.permit(:param1, :param2)
+    params.permit(:user_id, :name)
   end
 end

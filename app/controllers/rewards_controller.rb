@@ -30,6 +30,10 @@ class RewardsController < ApplicationController
     end
   end
 
+  def child_rewards
+    render json: Reward.where(child_id: params[:child_id])
+  end
+
   private
 
   def set_reward
@@ -37,6 +41,6 @@ class RewardsController < ApplicationController
   end
 
   def reward_params
-    params.permit(:param1, :param2)
+    params.permit(:child_id, :date, :complete)
   end
 end

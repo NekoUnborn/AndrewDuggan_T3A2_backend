@@ -1,15 +1,14 @@
 Rails.application.routes.draw do
-  resources :checklist_entries
   scope "/api/v1" do
     resources :medicines
-    resources :checklists
     resources :rewards
     resources :children
     resources :users
+    resources :checklist_entries
 
-    get '/user_id', to: 'children#index', as: 'select_user'
-    get '/user_id/child_id/', to: 'checklists#index', as: 'child_checklist'
-    get '/user_id/child_id/id', to: 'checklist#show', as: 'select_checklist'
+    get '/children/:user_id', to: 'children#users_children', as: 'users_children'
+    get '/checklist_entries/:child_id', to: 'checklist_entries#child_checklist_entries', as: 'child_checklist_entries'
+    get '/rewards/:child_id', to: 'rewards#child_rewards', as: 'child_rewards'
   end
 
   # get 'profiles/selectrole/', to: 'profiles#select_role', as: 'select_role'
