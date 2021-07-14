@@ -63,4 +63,15 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+
+  env_file = File.join(Rails.root, 'config', 'local_env.yml')
+  begin
+    if File.exist?(env_file)
+      YAML.safe_load(File.open(env_file)).each do |key, value|
+        ENV[key.to_s] = value
+      end
+    end
+  rescue
+    nil
+  end
 end
