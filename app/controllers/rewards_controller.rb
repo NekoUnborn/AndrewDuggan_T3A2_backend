@@ -1,5 +1,5 @@
 class RewardsController < ApplicationController
-  #  before_action :authenticate
+  before_action :authenticate
   before_action :set_reward, only: %i[show create update destroy]
 
   def index

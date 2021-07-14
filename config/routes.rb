@@ -11,6 +11,10 @@ Rails.application.routes.draw do
     get '/rewards/:child_id', to: 'rewards#child_rewards', as: 'child_rewards'
   end
 
+  scope '/users' do
+    post '/login', to: 'users#login'
+  end
+
   # get 'profiles/selectrole/', to: 'profiles#select_role', as: 'select_role'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
