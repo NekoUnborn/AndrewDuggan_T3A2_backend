@@ -14,7 +14,7 @@ admin = [
     username: ENV['ADMIN_USERNAME'],
     email: ENV['ADMIN_EMAIL'],
     password_digest: ENV['ADMIN_PASSWORD'],
-    pin: 12345
+    pin: ENV['ADMIN_PIN']
   }
 ]
 User.create(admin)
