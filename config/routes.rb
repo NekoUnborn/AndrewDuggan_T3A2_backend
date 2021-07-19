@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   scope '/users' do
     post '/login', to: 'users#login'
+    post '/signup', to: 'users#signup'
   end
 
   # get 'profiles/selectrole/', to: 'profiles#select_role', as: 'select_role'
