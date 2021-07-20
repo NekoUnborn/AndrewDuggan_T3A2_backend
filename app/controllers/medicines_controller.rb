@@ -1,9 +1,9 @@
 class MedicinesController < ApplicationController
-  before_action :authenticate
-  before_action :set_medicine, only: %i[show create update destroy]
+  # before_action :authenticate
+  before_action :set_medicine, only: %i[show update destroy]
 
   def index
-    render json: Medicine.all
+    render json: Medicine.all.pluck(:name, :description)
   end
 
   def show
@@ -11,7 +11,17 @@ class MedicinesController < ApplicationController
   end
 
   def create
-    render json: Medicine.create(medicine_params), status: :created
+    Medicine.create(medicine_params)
+    # Accepts the given parameters
+    # Checks that the DB does not already have an existing entry
+    # If the entry does not already exist, then create the new Medicine entry.
+    # case Medicine.where(name: medicine_params[:name])
+    #  when true
+    # Return a status message
+    # when false 
+    # return a json create method (below line works)
+    # render json: Medicine.create(medicine_params), status: :created
+    render plain: 'You made it'             
   end
 
   def update
