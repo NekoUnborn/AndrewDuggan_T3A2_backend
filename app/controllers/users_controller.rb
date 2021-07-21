@@ -27,9 +27,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    begin
     render json: @user
-    rescue Exception
   end
 
   def create
