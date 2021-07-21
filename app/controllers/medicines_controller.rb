@@ -18,7 +18,7 @@ class MedicinesController < ApplicationController
       if @new_med.save
         render json: {message: "Medication, #{medicine_params[:name]} has been created"}, status: :created
       else
-        render json: {message: @new_med.errors.full_messages}
+        render json: {message: @new_med.errors.full_messages}, status: 
       end
 
     end 
