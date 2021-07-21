@@ -1,6 +1,10 @@
 class ChecklistEntriesController < ApplicationController
   before_action :authenticate
-  before_action :set_checklist_entry, only: %i[show create update destroy]
+  before_action :set_checklist_entry, only: %i[show update destroy]
+
+  rescue_from Exception do |e|
+    render json: { error: e }, status: :not_found
+  end
 
   def index
     render json: Checklist_entry.all
