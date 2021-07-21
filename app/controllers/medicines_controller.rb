@@ -11,7 +11,17 @@ class MedicinesController < ApplicationController
   end
 
   def create
-    Medicine.create(medicine_params)
+    if Medicine.exists?(:name => medicine_params[:name]) == true 
+      render json: { message: 'Medicine already exists'}  
+    else 
+      @new_med = Medicine.new(medicine_params) 
+      if @new_med.save
+        render json: {message: "Medication, #{medicine_params[:name]} has been created"}, status: :created
+      else
+        render json: {message: @new_med.errors.full_messages}
+      end
+
+    end 
     # Accepts the given parameters
     # Checks that the DB does not already have an existing entry
     # If the entry does not already exist, then create the new Medicine entry.
@@ -20,8 +30,7 @@ class MedicinesController < ApplicationController
     # Return a status message
     # when false 
     # return a json create method (below line works)
-    # render json: Medicine.create(medicine_params), status: :created
-    render plain: 'You made it'             
+    # render json: Medicine.create(medicine_params), status: :created         
   end
 
   def update
