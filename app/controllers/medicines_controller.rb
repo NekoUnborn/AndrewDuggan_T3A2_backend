@@ -20,7 +20,6 @@ class MedicinesController < ApplicationController
       else
         render json: {message: @new_med.errors.full_messages}, status: 
       end
-
     end 
     # Accepts the given parameters
     # Checks that the DB does not already have an existing entry
