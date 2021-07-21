@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   before_action :authenticate
-  before_action :set_user, only: %i[show create update destroy]
+  before_action :set_user, only: %i[show update destroy]
+
+  rescue_from Exception do |e|
+    render json: { error: e }, status: :not_found
+  end
 
   def login
     user = User.find_by_username(user_params[:username])
@@ -23,7 +27,9 @@ class UsersController < ApplicationController
   end
 
   def show
+    begin
     render json: @user
+    rescue Exception
   end
 
   def create
