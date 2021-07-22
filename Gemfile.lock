@@ -159,7 +159,7 @@ DEPENDENCIES
   listen (~> 3.3)
   pg (~> 1.1)
   puma (~> 5.0)
-  rack-cors
+  rack-cors (~> 1.1)
   rails (~> 6.1.4)
   spring
   tzinfo-data
