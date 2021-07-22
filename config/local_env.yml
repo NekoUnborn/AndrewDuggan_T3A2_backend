@@ -8,4 +8,6 @@
 
 ADMIN_USERNAME: 'admin'
 ADMIN_EMAIL: 'admin@application.com.au'
-ADMIN_PASSWORD: '12345'
+ADMIN_PASSWORD: 'Password'
+ADMIN_PIN: '12345'
+JWT_SECRET_KEY: 'our_JWT_secret_key'

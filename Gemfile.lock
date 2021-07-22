@@ -74,7 +74,7 @@ GEM
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
     jwt (2.2.3)
-    listen (3.5.1)
+    listen (3.6.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     loofah (2.10.0)
@@ -159,7 +159,11 @@ DEPENDENCIES
   listen (~> 3.3)
   pg (~> 1.1)
   puma (~> 5.0)
+<<<<<<< HEAD
   rack-cors (~> 1.1)
+=======
+  rack-cors
+>>>>>>> 6aac850edd19d88dc8fa1fc6b9e1a84ecbe137cb
   rails (~> 6.1.4)
   spring
   tzinfo-data

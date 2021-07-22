@@ -9,15 +9,15 @@
 # User.destroy_all
 # Medicine.destroy_all
 
-# admin = [
-#   {
-#     username: ENV['ADMIN_USERNAME'],
-#     email: ENV['ADMIN_EMAIL'],
-#     password_digest: ENV['ADMIN_PASSWORD'],
-#     pin: 12345
-#   }
-# ]
-# User.create(admin)
+admin = [
+  {
+    username: ENV['ADMIN_USERNAME'],
+    email: ENV['ADMIN_EMAIL'],
+    password_digest: ENV['ADMIN_PASSWORD'],
+    pin: ENV['ADMIN_PIN']
+  }
+]
+User.create(admin)
 
 # children = [
 #   { user_id: User.first[:id], name: "Timothy" },
