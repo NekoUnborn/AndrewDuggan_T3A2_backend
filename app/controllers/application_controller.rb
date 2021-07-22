@@ -9,4 +9,3 @@ class ApplicationController < ActionController::API
     render json: { error: "Invalid token" }, status: :unauthorized
   end
 end
-end
