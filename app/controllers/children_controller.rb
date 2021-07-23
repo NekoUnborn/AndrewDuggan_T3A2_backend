@@ -3,7 +3,8 @@ class ChildrenController < ApplicationController
   before_action :set_child, only: %i[show create update destroy]
 
   def index
-    render json: Child.all
+    @user = User.where(username: @username)
+    render json: @user
   end
 
   def show
