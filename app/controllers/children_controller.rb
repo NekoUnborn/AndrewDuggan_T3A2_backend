@@ -8,11 +8,11 @@ class ChildrenController < ApplicationController
 
   def index
     @user = User.where(username: @username)
-    render json: @user
+    render json: @user.first.child.pluck(:name, :id)
   end
 
   def show
-    render json: @child
+    render json: @child.checklist_entries
   end
 
   def create
