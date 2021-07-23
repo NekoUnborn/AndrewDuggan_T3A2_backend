@@ -1,5 +1,5 @@
 class MedicinesController < ApplicationController
-  # before_action :authenticate
+  before_action :authenticate
   before_action :set_medicine, only: %i[show update destroy]
 
   def index

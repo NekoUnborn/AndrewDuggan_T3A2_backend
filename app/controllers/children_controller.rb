@@ -7,7 +7,8 @@ class ChildrenController < ApplicationController
   end
 
   def index
-    render json: Child.all
+    @user = User.where(username: @username)
+    render json: @user.first.child
   end
 
   def show
