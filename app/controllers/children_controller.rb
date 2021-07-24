@@ -8,15 +8,17 @@ class ChildrenController < ApplicationController
 
   def index
     @user = User.where(username: @username)
-<<<<<<< HEAD
-    render json: @user.first.child.pluck(:name, :id)
-=======
     render json: @user.first.child
->>>>>>> 0f3ad9cf92b66c51499d67bf1d8ea4e314675af6
   end
 
   def show
-    render json: @child.checklist_entries
+    @entries = @child.checklist_entries
+    @package = []
+    @entries.each do |entry| 
+      medicine = Medicine.find(entry.medicine_id).name
+      @package.push([entry, medicine])
+    end
+    render json:  @package
   end
 
   def create
