@@ -12,7 +12,7 @@ class MedicinesController < ApplicationController
 
   def create
     if Medicine.exists?(:name => medicine_params[:name]) == true 
-      render json: { message: 'Medicine already exists'}  
+      render json: { message: 'Medicine already exists'}, status: 401 
     else 
       @new_med = Medicine.new(medicine_params) 
       if @new_med.save
