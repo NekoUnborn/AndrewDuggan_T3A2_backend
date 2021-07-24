@@ -8,4 +8,8 @@ class ApplicationController < ActionController::API
   rescue StandardError
     render json: { error: "Invalid token" }, status: :unauthorized
   end
+<<<<<<< HEAD
 end
+=======
+end
+>>>>>>> 0f3ad9cf92b66c51499d67bf1d8ea4e314675af6

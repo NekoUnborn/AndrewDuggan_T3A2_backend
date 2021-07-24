@@ -10,6 +10,7 @@
 # Medicine.destroy_all
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 # admin = [
 #   {
 #     username: ENV['ADMIN_USERNAME'],
@@ -20,6 +21,8 @@
 # ]
 # User.create(admin)
 =======
+=======
+>>>>>>> 0f3ad9cf92b66c51499d67bf1d8ea4e314675af6
 admin = [
   {
     username: ENV['ADMIN_USERNAME'],
@@ -29,7 +32,10 @@ admin = [
   }
 ]
 User.create(admin)
+<<<<<<< HEAD
 >>>>>>> 6aac850edd19d88dc8fa1fc6b9e1a84ecbe137cb
+=======
+>>>>>>> 0f3ad9cf92b66c51499d67bf1d8ea4e314675af6
 
 # children = [
 #   { user_id: User.first[:id], name: "Timothy" },
