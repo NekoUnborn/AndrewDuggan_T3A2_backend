@@ -16,7 +16,7 @@ class ChildrenController < ApplicationController
     @package = []
     @entries.each do |entry| 
       medicine = entry.medicine.name
-      @package.push([entry, medicine])
+      @package.push({medicine: medicine, time: entry.time })
     end
     render json:  @package
   end
@@ -38,12 +38,14 @@ class ChildrenController < ApplicationController
   def update
     # Ifd a checklist entry already exists with the given medicine id, then set 
     @checklist = @child.checklist_entries
-
-    if @child.update(child_params)
-      render json: @child
-    else
-      render json: { error: 'Failed to update child' }
+    @checklist.destroy_all
+    params[:formMeds].each do |medicine|
+      @entry = ChecklistEntry.new(child_id: @child.id, medicine_id: Medicine.where(name: medicine[:medicine]).first.id, complete: false, time: medicine[:time])
+      if !@entry.save
+      else
+      end
     end
+    render json: {message: 'CheckList successfully Updated'}
   end
 
   def destroy
