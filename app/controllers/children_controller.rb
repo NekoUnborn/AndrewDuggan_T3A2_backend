@@ -15,17 +15,30 @@ class ChildrenController < ApplicationController
     @entries = @child.checklist_entries
     @package = []
     @entries.each do |entry| 
-      medicine = Medicine.find(entry.medicine_id).name
+      medicine = entry.medicine.name
       @package.push([entry, medicine])
     end
     render json:  @package
   end
 
   def create
-    render json: Child.create(child_params), status: :created
+    @child = Child.new(name: params[:name], user_id: User.where(username: @username).first.id)
+    if @child.save
+      params[:formMeds].each do |medicine|
+        @entry = ChecklistEntry.new(child_id: @child.id, medicine_id: Medicine.where(name: medicine).first.id, complete: false, time: 1000)
+        if !@entry.save
+        else
+        end
+      end
+    else 
+    end
+    render json: {id: @child.id, user_id: User.where(username: @username).first.id}
   end
 
   def update
+    # Ifd a checklist entry already exists with the given medicine id, then set 
+    @checklist = @child.checklist_entries
+
     if @child.update(child_params)
       render json: @child
     else
