@@ -25,7 +25,7 @@ class ChildrenController < ApplicationController
     @child = Child.new(name: params[:name], user_id: User.where(username: @username).first.id)
     if @child.save
       params[:formMeds].each do |medicine|
-        @entry = ChecklistEntry.new(child_id: @child.id, medicine_id: Medicine.where(name: medicine).first.id, complete: false, time: 1000)
+        @entry = ChecklistEntry.new(child_id: @child.id, medicine_id: Medicine.where(name: medicine[:medicine]).first.id, complete: false, time: medicine[:time])
         if !@entry.save
         else
         end
