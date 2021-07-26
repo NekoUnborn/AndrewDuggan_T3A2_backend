@@ -27,7 +27,7 @@ admin = [
   {
     username: ENV['ADMIN_USERNAME'],
     email: ENV['ADMIN_EMAIL'],
-    password_digest: ENV['ADMIN_PASSWORD'],
+    password: ENV['ADMIN_PASSWORD'],
     pin: ENV['ADMIN_PIN']
   }
 ]

@@ -4,7 +4,7 @@ class RewardsController < ApplicationController
 
   rescue_from Exception do |e|
     render json: { error: e }, status: :not_found
-  end
+  end 
 
   def index
     render json: Reward.all
