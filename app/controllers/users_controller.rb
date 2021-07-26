@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate
+  before_action :authenticate, except: %i[login signup]
   before_action :set_user, only: %i[show update destroy]
 
   rescue_from Exception do |e|

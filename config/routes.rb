@@ -9,11 +9,11 @@ Rails.application.routes.draw do
     get '/children/:user_id', to: 'children#users_children', as: 'users_children'
     get '/checklist_entries/:child_id', to: 'checklist_entries#child_checklist_entries', as: 'child_checklist_entries'
     get '/rewards/:child_id', to: 'rewards#child_rewards', as: 'child_rewards'
-  end
-
-  scope '/users' do
-    post '/login', to: 'users#login'
-    post '/signup', to: 'users#signup'
+    
+    scope '/users' do
+      post '/login', to: 'users#login'
+      post '/signup', to: 'users#signup'
+    end
   end
 
   # get 'profiles/selectrole/', to: 'profiles#select_role', as: 'select_role'
