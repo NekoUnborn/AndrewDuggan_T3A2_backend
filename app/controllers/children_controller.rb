@@ -7,23 +7,45 @@ class ChildrenController < ApplicationController
   end
 
   def index
-    render json: Child.all
+    @user = User.where(username: @username)
+    render json: @user.first.child
   end
 
   def show
-    render json: @child
+    @entries = @child.checklist_entries
+    @package = []
+    @entries.each do |entry| 
+      medicine = entry.medicine.name
+      @package.push({medicine: medicine, time: entry.time })
+    end
+    render json:  @package
   end
 
   def create
-    render json: Child.create(child_params), status: :created
+    @child = Child.new(name: params[:name], user_id: User.where(username: @username).first.id)
+    if @child.save
+      params[:formMeds].each do |medicine|
+        @entry = ChecklistEntry.new(child_id: @child.id, medicine_id: Medicine.where(name: medicine[:medicine]).first.id, complete: false, time: medicine[:time])
+        if !@entry.save
+        else
+        end
+      end
+    else 
+    end
+    render json: {id: @child.id, user_id: User.where(username: @username).first.id}
   end
 
   def update
-    if @child.update(child_params)
-      render json: @child
-    else
-      render json: { error: 'Failed to update child' }
+    # Ifd a checklist entry already exists with the given medicine id, then set 
+    @checklist = @child.checklist_entries
+    @checklist.destroy_all
+    params[:formMeds].each do |medicine|
+      @entry = ChecklistEntry.new(child_id: @child.id, medicine_id: Medicine.where(name: medicine[:medicine]).first.id, complete: false, time: medicine[:time])
+      if !@entry.save
+      else
+      end
     end
+    render json: {message: 'CheckList successfully Updated'}
   end
 
   def destroy

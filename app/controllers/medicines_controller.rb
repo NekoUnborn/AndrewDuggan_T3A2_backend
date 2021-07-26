@@ -1,13 +1,8 @@
 class MedicinesController < ApplicationController
   before_action :authenticate
   before_action :set_medicine, only: %i[show update destroy]
-
-  rescue_from Exception do |e|
-    render json: { error: e }, status: :not_found
-  end
-
   def index
-    render json: Medicine.all
+    render json: Medicine.all.pluck(:name, :description)
   end
 
   def show
@@ -15,23 +10,16 @@ class MedicinesController < ApplicationController
   end
 
   def create
-    render json: Medicine.create(medicine_params), status: :created
-  end
-
-  def update
-    if @medicine.update(medicine_params)
-      render json: @medicine
-    else
-      render json: { error: 'Failed to update medicine' }
-    end
-  end
-
-  def destroy
-    if @medicine.destroy
-      render status: :no_content
-    else
-      render json: { error: 'Failed to destroy medicine' }, status: :unprocessable_entity
-    end
+    if Medicine.exists?(:name => medicine_params[:name]) == true 
+      render json: { message: 'Medicine already exists'}, status: 40
+    else 
+      @new_med = Medicine.new(medicine_params) 
+      if @new_med.save
+        render json: {message: "Medication, #{medicine_params[:name]} has been created"}, status: 201
+      else
+        render json: {message: @new_med.errors.full_messages}, status: 409
+      end
+    end 
   end
 
   private
