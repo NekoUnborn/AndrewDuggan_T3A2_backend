@@ -16,7 +16,7 @@ class ChildrenController < ApplicationController
     @package = []
     @entries.each do |entry| 
       medicine = entry.medicine.name
-      @package.push({medicine: medicine, time: entry.time })
+      @package.push({medicine: medicine, time: entry.time , complete: entry.complete, id: entry.id})
     end
     render json:  @package
   end

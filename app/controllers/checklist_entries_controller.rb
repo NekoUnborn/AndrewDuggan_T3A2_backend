@@ -19,8 +19,8 @@ class ChecklistEntriesController < ApplicationController
   end
 
   def update
-    if @checklist_entry.update(checklist_entry_params)
-      render json: @checklist_entry
+    if @checklist_entry.update(complete: params[:complete])
+      render json: {medicine: @checklist_entry.medicine , time: @checklist_entry.time , complete: @checklist_entry.complete, id: @checklist_entry.id}
     else
       render json: { error: 'Failed to update checklist_entry' }
     end
@@ -41,7 +41,7 @@ class ChecklistEntriesController < ApplicationController
   private
 
   def set_checklist_entry
-    @checklist_entry = Checklist_entry.find(params[:id])
+    @checklist_entry = ChecklistEntry.find(params[:id])
   end
 
   def checklist_entry_params

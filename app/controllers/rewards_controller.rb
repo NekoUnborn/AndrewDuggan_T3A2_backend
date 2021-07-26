@@ -35,13 +35,19 @@ class RewardsController < ApplicationController
   end
 
   def child_rewards
-    render json: Reward.where(child_id: params[:child_id])
+    @rewards = Child.find(params[:id]).rewards
+    package = []
+    @rewards.each do |reward|
+      package.push({date: reward.date})
+    end
+    render json: package
   end
 
   private
 
   def set_reward
     @reward = Reward.find(params[:id])
+    
   end
 
   def reward_params
