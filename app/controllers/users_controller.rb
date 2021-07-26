@@ -16,7 +16,6 @@ class UsersController < ApplicationController
     else
       render json: { error: 'Username or password incorrect' }, status: :unauthorized
     end
-  end
 
   def signup
     render json: User.create(user_params), status: :created
