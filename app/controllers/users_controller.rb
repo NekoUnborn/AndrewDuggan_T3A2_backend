@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   end
 
   def login
+    p params
     user = User.find_by_username(user_params[:username])
     if user && user.authenticate(user_params[:password])
       payload = { username: user.username, email: user.email, pin: user.pin, exp: Time.now.to_i + (4 * 3600) }
