@@ -15,8 +15,8 @@ class ChildrenController < ApplicationController
     @entries = @child.checklist_entries
     @package = []
     @entries.each do |entry| 
-      medicine = entry.medicine.name
-      @package.push({medicine: medicine, time: entry.time })
+      @medicine = entry.medicine
+      @package.push({medicine: @medicine.name, time: entry.time, description: @medicine.description})
     end
     render json:  @package
   end
