@@ -44,3 +44,5 @@ gem "jwt", "~> 2.2"
 gem "rack-cors", "~> 1.1"
 
 gem "rspec-rails", "~> 5.0"
+
+gem "whenever", "~> 1.0"
