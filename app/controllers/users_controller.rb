@@ -6,6 +6,8 @@ class UsersController < ApplicationController
     render json: { error: e }, status: :not_found
   end
 
+  # This function checks if the User exists by the username and if so, checks the password.
+  # If both match the db, it renders the token
   def login
     @user = User.find_by_username(user_params[:username])
     if @user && @user.authenticate(user_params[:password])
@@ -48,19 +50,22 @@ class UsersController < ApplicationController
     end
   end
 
+  # This function retrieves the all of the checklist entries for the User and displays the out of date ones.
+  # This is for the reminders function
   def reminders
     @checklist_entries = []
     @user.child.each do |child|
-      child.checklist_entries.each do | entry |
-        if entry.time.strftime("%I:%M:%S") < Time.now.strftime("%I:%M:%S")
-          @checklist_entries.push({
-                                    child_name: entry.child.name,
-                                    medicine: entry.medicine.name,
-                                    time: entry.time
-                                  })
-        end
+      child.checklist_entries.each do |entry|
+        next unless entry.time.strftime("%I:%M:%S") < Time.now.strftime("%I:%M:%S")
+
+        @checklist_entries.push({
+                                  child_name: entry.child.name,
+                                  medicine: entry.medicine.name,
+                                  time: entry.time
+                                })
       end
     end
+    render json: @checklist_entries
   end
 
   private

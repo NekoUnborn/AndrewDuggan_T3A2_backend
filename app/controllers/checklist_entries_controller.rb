@@ -17,6 +17,7 @@ class ChecklistEntriesController < ApplicationController
     render json: Checklist_entry.create(checklist_entry_params), status: :created
   end
 
+  # If all of the checklist entries are complete, this function will also create a reward for the child
   def update
     if @checklist_entry.update(complete: params[:complete])
       child = @checklist_entry.child
