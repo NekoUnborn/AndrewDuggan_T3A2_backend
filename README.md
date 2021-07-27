@@ -247,16 +247,10 @@ The dashboard page has been designed this way to make the page visually appealin
 # Application Rubric
 ## R1. Tech
 ### - Rails
+For the backend api, the programming language Ruby was used, specifically the popular Ruby gem Ruby on Rails. Ruby on Rails comes with a lot of dependencies, however only Gems external to this and the ones that had to be purposefully enabled have been outlined in this tech stack as if anyone were to try and recreate this, they would get the dependencies when they install or update the Ruby on Rails gem. 
 
-- ruby
-- rails
-- pg
-- puma
-- bootsnap
+ - PG: This gem was used to integrate the chosen Database mangaement system PostGreSQL
 - rack-cors : Rack-cors added the ability to selectively chose origins that the APi would accept requests from.
-- byebug
-- spring
-- tzinfo-data
 - bcrypt : Bcrypt was used to add the ability to create hashed passwords in the database through Rails. 
 - jwt - JWT was used to implement user logins, through the use of tokens and ecryption of the token. 
 - rspec-rails : This was used as the testing framework for the backend Rails API. 
@@ -265,28 +259,21 @@ The dashboard page has been designed this way to make the page visually appealin
 
 
 #### These are the react basic libraries
-- react
-- react-dom
+For the Frontend, the Javascript Framework React was used. This also comes with its own built in libraries, and once again the ones that had to be explicitly imported or enabled have been outlined below. 
 - react-router-dom : React Router Dom was used to add the ability for the application to function like a multi-page web page by selectively rendering specific components based off the URL
-- react-scripts
 - styled-components : The styled Componenets library was used to create exportable styled tags to be used to style the application and components
 - cypress : Cypress was the testing framework used in React to test the components created and their implementation in various parts of the application
 
-## R2. **Write well designed code that:**
 
-
-## R3. Employ and utilise proper source control methodology (git)
+## GIT Repos
 Github was used as the source control method. The links to the backend API and the Deployed Frontend can be found below: 
 
 Backend Git: https://github.com/NekoUnborn/coderacademy_t3a2_backend
 Frontend Git: https://github.com/NekoUnborn/CoderAcademy_T3A2-Frontend
 
-## R4. **Demonstrate your ability to work in a team**:
 
 ### - Use a recognised project management methodology
 We used the AGILE methodology
-
-### - Use a recognised task delegation methodology
 We used Trello for task delegation (though we should have separated the front and back end tasks)
 https://trello.com/b/knoPp8L3/coderacademyt3a2
 
@@ -296,14 +283,17 @@ https://trello.com/b/knoPp8L3/coderacademyt3a2
 https://cranky-tereshkova-006e78.netlify.app/
 
 
-## R8. **Provides evidence of user testing**:
 
 ### - In the development environment
 
 ### - In the production environment
 
-## R9. Utilises a formal testing framework
-Using:
-  RSPEC for Backend (Rails)
-  Cypress for frontend (React)
+## Tests
+Cypress was used to test the frontend. One key note is that all of the tests have been purposefully commented out so they can run individually to reduce the load the tests have on the local and production server.
 
+User Tests were run on the locally hosted servers of the developers involved
+
+
+## Side Notes: 
+
+For anyone pulling ,forking or cloning the repo you will need to create an ENV file, and add a variable called REACT_APP_API_ENDPOINT and have that point to the URL for the Rails API Backend, whether that is the one hosted on the Heroku production server, or a locally run one. There is another Environment variable that must be set as well. This will be for the Cypress tests and will need to be set in the cypress.json file on the React Frontend. This is called prod in the test files, can be customised by simply matching it with what is set in the cypress.json. Ths variable will govern the URL the tests will use to run the automated tests
