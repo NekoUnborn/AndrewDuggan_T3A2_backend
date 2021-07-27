@@ -34,14 +34,6 @@ class ChecklistEntriesController < ApplicationController
     end
   end
 
-  def child_checklist_entries
-    @entries = ChecklistEntry.where(child_id: user_params[:child_id])
-    @entries.each do |entry|
-      entry[:completed] = false if entry[:date] != user_params[:current_date]
-    end
-    render json: @entries
-  end
-
   private
 
   def set_checklist_entry

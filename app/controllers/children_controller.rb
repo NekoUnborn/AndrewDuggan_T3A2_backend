@@ -1,25 +1,18 @@
 # This class is for the rendering of the child information
 class ChildrenController < ApplicationController
   before_action :authenticate
-  before_action :set_child, only: %i[show update destroy]
+  before_action :set_child, only: %i[show update destroy child_checklist_entries]
 
   rescue_from Exception do |e|
     render json: { error: e }, status: :not_found
   end
 
   def index
-    @user = User.where(username: @username)
-    render json: @user.first.child
+    render json: Child.all
   end
 
   def show
-    @entries = @child.checklist_entries
-    @package = []
-    @entries.each do |entry|
-      medicine = entry.medicine
-      @package.push({ medicine: medicine.name, discription: medicine.discription, time: entry.time })
-    end
-    render json: @package
+    render json: @child
   end
 
   def create
@@ -63,6 +56,23 @@ class ChildrenController < ApplicationController
 
   def users_children
     render json: Child.where(user_id: params[:user_id])
+  end
+
+  def child_checklist_entries
+    @entries = @child.checklist_entries
+    @package = []
+    @entries.each do |entry|
+      entry[:completed] = false if entry[:date] != Date.current
+      @package.push({
+                      checklist_entry_id: entry.id,
+                      medicine_id: entry.medicine_id,
+                      medicine: { name: entry.medicine.name,
+                                  discription: entry.medicine.discription },
+                      time: entry.time,
+                      completed: entry.completed
+                    })
+    end
+    render json: @package
   end
 
   private
