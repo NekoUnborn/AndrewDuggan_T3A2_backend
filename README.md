@@ -249,10 +249,14 @@ The dashboard page has been designed this way to make the page visually appealin
 ### - Rails
 For the backend api, the programming language Ruby was used, specifically the popular Ruby gem Ruby on Rails. Ruby on Rails comes with a lot of dependencies, however only Gems external to this and the ones that had to be purposefully enabled have been outlined in this tech stack as if anyone were to try and recreate this, they would get the dependencies when they install or update the Ruby on Rails gem. 
 
- - PG: This gem was used to integrate the chosen Database mangaement system PostGreSQL
-- rack-cors : Rack-cors added the ability to selectively chose origins that the APi would accept requests from.
-- bcrypt : Bcrypt was used to add the ability to create hashed passwords in the database through Rails. 
-- jwt - JWT was used to implement user logins, through the use of tokens and ecryption of the token. 
+ - PG: This gem was used to integrate the chosen Database mangaement system PostGreSQL. This allows the Database.yml to be configured to communicate with a PostGreSQL database and add and rem ove database tables and entries as needed through the use of the Rails models system. 
+
+- rack-cors : Rack-cors is the Gem that is built in to Rails, that allows the programmer to filter what origins a HTTP request can come from. In this project Rack-Cors was used to filter the HTTP requests the API Backend could receive from. In specific scenarios however the Gem can also filter what specific request types can come from a specific origin as well. This was however not utilised in this scenario, as the API was only inteneded to be used with the React Frontend App
+
+- bcrypt : Bcrypt was used to add the ability to create hashed passwords in the database through Rails to ensure that the database and specifically the users model was secure and could not be accessed randomly. Instead the password would utilised Bcrypt Gem functions to authenticate and dehash the passwords. 
+
+- jwt - JWT was used to implement user logins, through the use of tokens and ecryption of the token. JWT allowed the Rails backend to create an encrypted token that could be used for authentication and security. Specifically the token was used to authenticate the users that are logging in. 
+
 - rspec-rails : This was used as the testing framework for the backend Rails API. 
 
 ### - React.js
@@ -261,8 +265,8 @@ For the backend api, the programming language Ruby was used, specifically the po
 #### These are the react basic libraries
 For the Frontend, the Javascript Framework React was used. This also comes with its own built in libraries, and once again the ones that had to be explicitly imported or enabled have been outlined below. 
 - react-router-dom : React Router Dom was used to add the ability for the application to function like a multi-page web page by selectively rendering specific components based off the URL
-- styled-components : The styled Componenets library was used to create exportable styled tags to be used to style the application and components
-- cypress : Cypress was the testing framework used in React to test the components created and their implementation in various parts of the application
+- styled-components : The styled Componenets library was used to create exportable styled tags to be used to style the application and components. Specifically the components can be created in an external file and then exported and imported into the appropriate React Components.
+- cypress : Cypress was the testing framework used in React to test the components created and their implementation in various parts of the application. Cypress Test files have been created in the React Frontend and this Library was used to test the React Frontend in developement as well as production through the implementation of Environmental Variables
 
 
 ## GIT Repos
@@ -275,25 +279,29 @@ Frontend Git: https://github.com/NekoUnborn/CoderAcademy_T3A2-Frontend
 ### - Use a recognised project management methodology
 We used the AGILE methodology
 We used Trello for task delegation (though we should have separated the front and back end tasks)
+User Stories and features were defined in the Trello Board and updated so the team could stay updated with the progress of the project and what features needed ot be worked on next. 
 https://trello.com/b/knoPp8L3/coderacademyt3a2
 
 
-## R6. Deploy the application to a cloud hosting service
-### Deployed to Netlify
+## Deployment Services: 
+
+
+Frontend Deployed to Netlify
 https://cranky-tereshkova-006e78.netlify.app/
 
+Backend Deployed to Heroku
+https://coderacademy-t3a2-backend.herokuapp.com/api/v1/
 
-
-### - In the development environment
-
-### - In the production environment
+User Tes
 
 ## Tests
 Cypress was used to test the frontend. One key note is that all of the tests have been purposefully commented out so they can run individually to reduce the load the tests have on the local and production server.
 
 User Tests were run on the locally hosted servers of the developers involved
+Any spreadsheets for the testing can be found in : docs/backendTestCases.xls
 
 
 ## Side Notes: 
 
 For anyone pulling ,forking or cloning the repo you will need to create an ENV file, and add a variable called REACT_APP_API_ENDPOINT and have that point to the URL for the Rails API Backend, whether that is the one hosted on the Heroku production server, or a locally run one. There is another Environment variable that must be set as well. This will be for the Cypress tests and will need to be set in the cypress.json file on the React Frontend. This is called prod in the test files, can be customised by simply matching it with what is set in the cypress.json. Ths variable will govern the URL the tests will use to run the automated tests
+
