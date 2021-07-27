@@ -6,9 +6,9 @@ Rails.application.routes.draw do
     resources :users
     resources :checklist_entries
 
-    get '/children/:user_id', to: 'children#users_children', as: 'users_children'
-    get '/children/entries/:child_id', to: 'children#child_checklist_entries', as: 'child_checklist_entries'
-    get '/rewards/:child_id', to: 'rewards#child_rewards', as: 'child_rewards'
+    # get '/children/:id', to: 'children#users_children', as: 'users_children'
+    get '/children/entries/:id', to: 'children#child_checklist_entries', as: 'child_checklist_entries'
+    get '/children/rewards/:id', to: 'rewards#child_rewards', as: 'child_rewards'
     scope '/users' do
       post '/login', to: 'users#login'
       post '/signup', to: 'users#signup'

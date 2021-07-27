@@ -62,14 +62,14 @@ class ChildrenController < ApplicationController
     @entries = @child.checklist_entries
     @package = []
     @entries.each do |entry|
-      entry[:completed] = false if entry[:date] != Date.current
+      entry[:complete] = false if entry[:last_accessed] != Date.current
       @package.push({
                       checklist_entry_id: entry.id,
                       medicine_id: entry.medicine_id,
-                      medicine: { name: entry.medicine.name,
-                                  discription: entry.medicine.discription },
+                      medicine: entry.medicine.name,
+                      description: entry.medicine.description,
                       time: entry.time,
-                      completed: entry.completed
+                      complete: entry.complete
                     })
     end
     render json: @package
