@@ -248,86 +248,38 @@ The dashboard page has been designed this way to make the page visually appealin
 ## R1. Tech
 ### - Rails
 
-ruby
-
-rails
-
-#### Use postgresql as the database for Active Record
-
-pg
-
-#### Use Puma as the app server
-
-puma
-
-##### Use Active Model has_secure_password
-
-bcrypt
-
-#### Reduces boot times through caching; required in config/boot.rb
-
-bootsnap
-
-#### Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-
-rack-cors
-
-#### Call 'byebug' anywhere in the code to stop execution and get a debugger console
-
-byebug
-
-#### Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-spring
-
-#### Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-tzinfo-data
-
-#### JWT allows tokens to be used as authentication
-jwt
-
-#### RSPEC allows automatic testing
-rspec-rails
+- ruby
+- rails
+- pg
+- puma
+- bootsnap
+- rack-cors : Rack-cors added the ability to selectively chose origins that the APi would accept requests from.
+- byebug
+- spring
+- tzinfo-data
+- bcrypt : Bcrypt was used to add the ability to create hashed passwords in the database through Rails. 
+- jwt - JWT was used to implement user logins, through the use of tokens and ecryption of the token. 
+- rspec-rails : This was used as the testing framework for the backend Rails API. 
 
 ### - React.js
-#### Cypress is for automatic testing
-cypress
+
 
 #### These are the react basic libraries
-react
-react-dom
-react-router-dom
-react-scripts
-styled-components
+- react
+- react-dom
+- react-router-dom : React Router Dom was used to add the ability for the application to function like a multi-page web page by selectively rendering specific components based off the URL
+- react-scripts
+- styled-components : The styled Componenets library was used to create exportable styled tags to be used to style the application and components
+- cypress : Cypress was the testing framework used in React to test the components created and their implementation in various parts of the application
 
 ## R2. **Write well designed code that:**
 
-### - Separates the program into modules that each deal with one particular focus, or concern
-
-### - Demonstrates DRY (Don’t Repeat Yourself) coding principles
-<!-- ## CMP1043-1.2 Demonstrate DRY (Don’t Repeat Yourself) principles in all code. -->
- <!-- - Excellent use of DRY principles, every piece of knowledge has a single, unambiguous, authoritative representation -->
-
-### - Uses appropriate libraries
-<!-- ## CMP1043-1.3 Appropriate use of libraries used in the app -->
-<!-- Excellent use of libraries and a complete and detailed description of libraries used in the app -->
-
-### - Demonstrates good code flow control for user stories
-<!-- ## PRG1006-1.1 Demonstrate code flow control -->
-<!-- Flawless code flow control -->
-
-### - Applies Object Oriented (OO) principles/patterns
-<!-- ## PRG1006-1.3 Apply Object oriented principles/patterns -->
-<!-- Superior use of object oriented principles/patterns; use of OO principles/patterns throughout application with positive impact on code maintainability and serviceability -->
-
-### - Uses appropriate data structures
-<!-- ## PRG1006-1.2 Demonstrate use of functions -->
-<!-- Excellent use of functions to eliminate duplicated code and highly organized code with clearly commented code; use of functions clearly improves code serviceability and maintenance -->
-<!-- ## PRG1006-4.3 Utilises functions, ranges and classes -->
-<!-- Utilises highly sophisticated functions, ranges and classes, demonstrating an exceptional level of understanding -->
 
 ## R3. Employ and utilise proper source control methodology (git)
-<!-- ## PRG1006-2.1 Employ and utilise proper source control methodology -->
-<!-- Basic use - Project files exist on a git repo and has README and gitignore with appropriate content and uses multiple feature branches with commits from all team members and demonstrates frequent commits, merges and pull requests from all team members -->
+Github was used as the source control method. The links to the backend API and the Deployed Frontend can be found below: 
+
+Backend Git: https://github.com/NekoUnborn/coderacademy_t3a2_backend
+Frontend Git: https://github.com/NekoUnborn/CoderAcademy_T3A2-Frontend
 
 ## R4. **Demonstrate your ability to work in a team**:
 
@@ -339,12 +291,10 @@ We used Trello for task delegation (though we should have separated the front an
 https://trello.com/b/knoPp8L3/coderacademyt3a2
 
 
-## R5. Produce a working application that meets client and user needs
-
 ## R6. Deploy the application to a cloud hosting service
 ### Deployed to Netlify
 https://cranky-tereshkova-006e78.netlify.app/
-## R7. Produce an application with an intuitive user interface
+
 
 ## R8. **Provides evidence of user testing**:
 

@@ -9,7 +9,6 @@ class ChecklistEntriesController < ApplicationController
   def index
     render json: Checklist_entry.all
   end
-
   def show
     render json: @checklist_entry
   end
@@ -19,8 +18,18 @@ class ChecklistEntriesController < ApplicationController
   end
 
   def update
-    if @checklist_entry.update(checklist_entry_params)
-      render json: @checklist_entry
+    if @checklist_entry.update(complete: params[:complete])
+      child = @checklist_entry.child
+      list_verify = []
+      child.checklist_entries.each do |entry|
+        list_verify.push(entry.complete)
+      end
+      if !list_verify.include?(false) && Time.now.day != child.rewards.last.date.day
+        child.rewards.create(date: Time.now)
+        render json: {medicine: @checklist_entry.medicine , time: @checklist_entry.time , complete: @checklist_entry.complete, id: @checklist_entry.id}
+      else 
+        render json: {medicine: @checklist_entry.medicine , time: @checklist_entry.time , complete: @checklist_entry.complete, id: @checklist_entry.id}
+      end 
     else
       render json: { error: 'Failed to update checklist_entry' }
     end
@@ -37,7 +46,7 @@ class ChecklistEntriesController < ApplicationController
   private
 
   def set_checklist_entry
-    @checklist_entry = Checklist_entry.find(params[:id])
+    @checklist_entry = ChecklistEntry.find(params[:id])
   end
 
   def checklist_entry_params
