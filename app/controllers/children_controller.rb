@@ -1,3 +1,4 @@
+# This class is for the rendering of the child information
 class ChildrenController < ApplicationController
   before_action :authenticate
   before_action :set_child, only: %i[show update destroy]
@@ -14,38 +15,42 @@ class ChildrenController < ApplicationController
   def show
     @entries = @child.checklist_entries
     @package = []
-    @entries.each do |entry| 
-      medicine = entry.medicine.name
-      @package.push({medicine: medicine, time: entry.time })
+    @entries.each do |entry|
+      medicine = entry.medicine
+      @package.push({ medicine: medicine.name, discription: medicine.discription, time: entry.time })
     end
-    render json:  @package
+    render json: @package
   end
 
   def create
     @child = Child.new(name: params[:name], user_id: User.where(username: @username).first.id)
     if @child.save
       params[:formMeds].each do |medicine|
-        @entry = ChecklistEntry.new(child_id: @child.id, medicine_id: Medicine.where(name: medicine[:medicine]).first.id, complete: false, time: medicine[:time])
-        if !@entry.save
+        @entry = ChecklistEntry.new(child_id: @child.id,
+                                    medicine_id: Medicine.where(name: medicine[:medicine]).first.id, complete: false, time: medicine[:time])
+        if @entry.save
+          render json: { message: 'CheckList successfully Created' }
         else
+          render json: { message: 'CheckList failed Creation' }
         end
       end
-    else 
     end
-    render json: {id: @child.id, user_id: User.where(username: @username).first.id}
+    render json: { id: @child.id, user_id: User.where(username: @username).first.id }
   end
 
   def update
-    # Ifd a checklist entry already exists with the given medicine id, then set 
+    # If a checklist entry already exists with the given medicine id, then set
     @checklist = @child.checklist_entries
     @checklist.destroy_all
     params[:formMeds].each do |medicine|
-      @entry = ChecklistEntry.new(child_id: @child.id, medicine_id: Medicine.where(name: medicine[:medicine]).first.id, complete: false, time: medicine[:time])
-      if !@entry.save
+      @entry = ChecklistEntry.new(child_id: @child.id, medicine_id: Medicine.where(name: medicine[:medicine]).first.id,
+                                  complete: false, time: medicine[:time])
+      if @entry.save
+        render json: { message: 'CheckList successfully Updated' }
       else
+        render json: { message: 'CheckList failed Update' }
       end
     end
-    render json: {message: 'CheckList successfully Updated'}
   end
 
   def destroy
