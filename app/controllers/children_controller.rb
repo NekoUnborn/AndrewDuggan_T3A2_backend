@@ -22,9 +22,7 @@ class ChildrenController < ApplicationController
       params[:formMeds].each do |medicine|
         @entry = ChecklistEntry.new(child_id: @child.id,
                                     medicine_id: Medicine.where(name: medicine[:medicine]).first.id, complete: false, time: medicine[:time])
-        if @entry.save
-          render json: { message: 'CheckList successfully Created' }, status: 201
-        else
+        if !@entry.save
           render json: { message: 'CheckList failed Creation' }
         end
       end
@@ -40,7 +38,7 @@ class ChildrenController < ApplicationController
       @entry = ChecklistEntry.new(child_id: @child.id, medicine_id: Medicine.where(name: medicine[:medicine]).first.id,
                                   complete: false, time: medicine[:time])
       if @entry.save
-        render json: { message: 'CheckList successfully Updated' }
+        render json: { message: 'CheckList successfully Updated' , }
       else
         render json: { message: 'CheckList failed Update' }
       end
