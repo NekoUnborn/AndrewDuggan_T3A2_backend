@@ -23,7 +23,7 @@ class ChildrenController < ApplicationController
         @entry = ChecklistEntry.new(child_id: @child.id,
                                     medicine_id: Medicine.where(name: medicine[:medicine]).first.id, complete: false, time: medicine[:time])
         if @entry.save
-          render json: { message: 'CheckList successfully Created' }
+          render json: { message: 'CheckList successfully Created' }, status: 201
         else
           render json: { message: 'CheckList failed Creation' }
         end
