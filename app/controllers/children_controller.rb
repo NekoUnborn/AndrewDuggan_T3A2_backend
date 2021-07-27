@@ -8,7 +8,8 @@ class ChildrenController < ApplicationController
   end
 
   def index
-    render json: Child.all
+    @children = User.where(username: @username).first.child
+    render json: @children
   end
 
   def show
@@ -62,14 +63,14 @@ class ChildrenController < ApplicationController
     @entries = @child.checklist_entries
     @package = []
     @entries.each do |entry|
-      entry[:complete] = false if entry[:date] != Date.current
+      entry[:complete] = false if entry[:time] != Date.current
       @package.push({
                       checklist_entry_id: entry.id,
                       medicine_id: entry.medicine_id,
-                      medicine: { name: entry.medicine.name,
-                                  description: entry.medicine.description },
+                      medicine: entry.medicine.name,
+                      description: entry.medicine.description,
                       time: entry.time,
-                      completed: entry.complete
+                      complete: entry.complete
                     })
     end
     render json: @package
