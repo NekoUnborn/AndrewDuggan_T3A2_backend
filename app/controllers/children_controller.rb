@@ -63,13 +63,13 @@ class ChildrenController < ApplicationController
     @entries = @child.checklist_entries
     @package = []
     @entries.each do |entry|
-      entry[:complete] = false if entry[:time] != Date.current
+      entry[:complete] = false if entry[:last_accessed] != Date.current
       @package.push({
                       checklist_entry_id: entry.id,
                       medicine_id: entry.medicine_id,
                       medicine: entry.medicine.name,
                       description: entry.medicine.description,
-                      time: entry.time,
+                      time: entry.time.strftime("%I:%M"),
                       complete: entry.complete
                     })
     end
