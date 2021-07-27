@@ -68,7 +68,7 @@ class ChildrenController < ApplicationController
                       medicine_id: entry.medicine_id,
                       medicine: entry.medicine.name,
                       description: entry.medicine.description,
-                      time: entry.time,
+                      time: entry.time.strftime("%I:%M"),
                       complete: entry.complete
                     })
     end
