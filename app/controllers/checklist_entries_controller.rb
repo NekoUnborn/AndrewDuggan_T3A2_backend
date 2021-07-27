@@ -35,17 +35,25 @@ class ChecklistEntriesController < ApplicationController
   end
 
   def child_checklist_entries
-    render json: ChecklistEntry.where(child_id: params[:child_id])
+    @entries = ChecklistEntry.where(child_id: user_params[:child_id])
+    @entries.each do |entry|
+      if entry[:date] != user_params[:current_date]
+        entry[:completed] = false
+      end
+    end
+    render json: @entries
   end
 
   private
 
   def set_checklist_entry
     @checklist_entry = Checklist_entry.find(params[:id])
+
+    end
   end
 
   def checklist_entry_params
-    params.permit(:child_id, :time, :medication_id, :complete, :last_accessed)
+    params.permit(:child_id, :time, :medication_id, :complete, :last_accessed, :current_date)
   end
 end
 
