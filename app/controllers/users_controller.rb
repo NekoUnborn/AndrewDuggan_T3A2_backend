@@ -48,6 +48,21 @@ class UsersController < ApplicationController
     end
   end
 
+  def reminders
+    @checklist_entries = []
+    @user.child.each do |child|
+      child.checklist_entries.each do | entry |
+        if entry.time.strftime("%I:%M:%S") < Time.now.strftime("%I:%M:%S")
+          @checklist_entries.push({
+                                    child_name: entry.child.name,
+                                    medicine: entry.medicine.name,
+                                    time: entry.time
+                                  })
+        end
+      end
+    end
+  end
+
   private
 
   def set_user
