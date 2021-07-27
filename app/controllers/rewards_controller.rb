@@ -34,6 +34,7 @@ class RewardsController < ApplicationController
     end
   end
 
+  # This function finds all of the rewards for the listed child
   def child_rewards
     @rewards = Child.find(params[:id]).rewards
     package = []
@@ -47,7 +48,6 @@ class RewardsController < ApplicationController
 
   def set_reward
     @reward = Reward.find(params[:id])
-    
   end
 
   def reward_params

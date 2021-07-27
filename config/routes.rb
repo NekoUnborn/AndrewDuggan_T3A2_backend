@@ -6,11 +6,12 @@ Rails.application.routes.draw do
     resources :users
     resources :checklist_entries
 
-    # get '/children/:id', to: 'children#users_children', as: 'users_children'
+    # These are the routes for the added functionality
     scope '/children' do
       get '/entries/:id', to: 'children#child_checklist_entries', as: 'child_checklist_entries'
       get '/rewards/:id', to: 'rewards#child_rewards', as: 'child_rewards'
     end
+    # These are the user routes
     scope '/users' do
       post '/login', to: 'users#login'
       post '/signup', to: 'users#signup'

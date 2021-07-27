@@ -53,10 +53,13 @@ class ChildrenController < ApplicationController
     end
   end
 
+  # This function finds the children of the param'ed User
   def users_children
     render json: Child.where(user_id: params[:user_id])
   end
 
+  # This function retrieves all of the checklist entries for the param'ed child
+  # It renders an array of the entries
   def child_checklist_entries
     @entries = @child.checklist_entries
     @package = []
