@@ -43,10 +43,6 @@ class ChecklistEntriesController < ApplicationController
     end
   end
 
-  def child_checklist_entries
-    render json: ChecklistEntry.where(child_id: params[:child_id])
-  end
-
   private
 
   def set_checklist_entry
@@ -54,7 +50,6 @@ class ChecklistEntriesController < ApplicationController
   end
 
   def checklist_entry_params
-    params.permit(:child_id, :time, :medication_id, :complete, :last_accessed)
+    params.permit(:child_id, :time, :medication_id, :complete, :last_accessed, :current_date)
   end
 end
-
